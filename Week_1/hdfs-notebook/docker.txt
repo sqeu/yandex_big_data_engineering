@@ -1,0 +1,62 @@
+Week 1
+docker run -it --rm -p 8888:8888 -v "C:\Users\hugo_\Desktop\Ulima\MOOC\coursera\yandex_big_data\yandex_bd_essentials\Week_1\hdfs-notebook" bigdatateam/hdfs-notebook
+
+1.
+
+On this slide you see the formula:
+
+10 Pb / 128 Mb * 3 * 150 = 35 156 250 000 b ~= 35.1 Gb
+
+which is NOT correct. It should be:
+
+10 Pb / (128 Mb * 3 ) * 150 B = 3 906 250 000 b ~= 3.9 Gb
+
+because the level of granularity on the Namenode is block, not replica. Please mention, that during the assignments the second formula supposed to be used (this video will be updated as soon as possible).
+
+
+10 PB capacity
+150B avg block size on namenode
+128MB block size
+
+1 PB / (64 MB * 3 ) * 300 B
+
+2.
+v = 60 mb/s
+seek_t= 5 ms = 0.005 s
+
+read_t/seek_t=200
+read_t= 200 * seek_t
+
+v = block_size/read_t
+block_size = v * read_t
+block_size =  60 mb/s * 200 *0.005 s
+block_size = 60 mb
+
+3.
+hdfs dfs -mkdir /assignment1
+hdfs dfs -put test.txt /assignment1
+hdfs dfs -ls /assignment1
+hdfs dfs -chmod 640 /assignment1/test.txt
+hdfs dfs -cat /assignment1/test.txt | head -n 10
+hdfs dfs -mv /assignment1/test.txt /assignment1/test2.txt
+
+4.
+hdfs fsck /data/wiki/en_articles_part/articles-part -files -blocks -locations
+hdfs fsck -blockId blk_1073741825
+Connecting to namenode via http://localhost:50070/fsck?ugi=jovyan&blockId=blk_1073741825+&path=%2F
+FSCK started by jovyan (auth:SIMPLE) from /127.0.0.1 at Sat Aug 03 18:17:08 UTC 2019
+Block Id: blk_1073741825
+Block belongs to: /data/wiki/en_articles_part/articles-part
+No. of Expected Replica: 1
+No. of live Replica: 1
+No. of excess Replica: 0
+No. of stale Replica: 0
+No. of decommissioned Replica: 0
+No. of decommissioning Replica: 0
+No. of corrupted Replica: 0
+Block replica on datanode/rack: 40fe8688b940/default-rack is HEALTHY
+
+5.
+Total capacity -> Configured capacity: 2.14 TB
+Total used space -> DFS Used: 242.12 GB (11.03%)
+Total data nodes -> Live nodes: 4

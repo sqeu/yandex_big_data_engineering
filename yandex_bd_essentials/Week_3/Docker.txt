@@ -1,3 +1,3 @@
-docker run -it -p 8888:8888 -p 8088:8088 -p 8042:8042 bigdatateam/yarn-notebook
+docker run -it -p 8888:8888 -p 8088:8088 -p 8042:8042 -p 4040 bigdatateam/yarn-notebook
 
 "C:\Users\hugo_\Desktop\Ulima\MOOC\coursera\yandex_big_data\yandex_bd_essentials\Week_1\hdfs-notebook"
